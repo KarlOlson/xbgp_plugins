@@ -1,0 +1,36 @@
+{
+  "jit_all": true,
+  "name": "set_med_42",
+  "extra_mem": 512,
+  "shared_mem": 0,
+  "obj_code_list": {
+    "set_med_import_filter": {
+      "obj": "set_med_42.o",
+      "permissions": [
+        "read",
+        "write",
+        "usr_ptr"
+      ]
+    },
+    "encode_med": {
+      "obj": "encode_med.o",
+      "permissions": [
+        "read",
+        "write",
+        "usr_ptr"
+      ]
+    }
+  },
+  "insertion_points": {
+    "bgp_pre_inbound_filter": {
+      "replace": {
+        "0": "set_med_import_filter"
+      }
+    },
+    "bgp_encode_attr": {
+      "replace": {
+        "0": "encode_med"
+      }
+    }
+  }
+}
